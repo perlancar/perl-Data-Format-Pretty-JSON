@@ -45,6 +45,8 @@ Some example output:
 
  {"a":1,"b":2}
 
+=back
+
 
 =head1 DESCRIPTION
 
