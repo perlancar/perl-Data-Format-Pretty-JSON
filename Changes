@@ -1,5 +1,10 @@
 Revision history for Data-Format-Pretty-JSON
 
+0.02     2011-08-11
+
+         - Add ::CompatJSON shortcut module.
+
+
 0.01     2011-08-11
 
          - First release.
