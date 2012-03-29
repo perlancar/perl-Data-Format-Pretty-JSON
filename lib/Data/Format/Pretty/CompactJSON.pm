@@ -14,6 +14,8 @@ my $json = JSON->new->utf8->allow_nonref;
 
 # VERSION
 
+sub content_type { "application/json" }
+
 sub format_pretty {
     my ($data, $opts0) = @_;
     my %opts = $opts0 ? %$opts0 : ();
