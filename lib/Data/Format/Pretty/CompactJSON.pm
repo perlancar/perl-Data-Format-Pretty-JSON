@@ -71,6 +71,10 @@ interactively.
 
 =back
 
+=head2 content_type() => STR
+
+Return C<application/json>.
+
 
 =head1 SEE ALSO
 
