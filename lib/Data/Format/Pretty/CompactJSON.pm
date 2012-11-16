@@ -4,23 +4,30 @@ use 5.010;
 use strict;
 use warnings;
 
-use Data::Format::Pretty::JSON;
-
 require Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(format_pretty);
-
-my $json = JSON->new->utf8->allow_nonref;
 
 # VERSION
 
 sub content_type { "application/json" }
 
 sub format_pretty {
-    my ($data, $opts0) = @_;
-    my %opts = $opts0 ? %$opts0 : ();
-    $opts{pretty} = 0;
-    Data::Format::Pretty::JSON::format_pretty($data, \%opts);
+    my ($data, $opts) = @_;
+    state $json;
+
+    $opts //= {};
+
+    if ($opts->{color} // (-t STDOUT)) {
+        require JSON::Color;
+        JSON::Color::encode_json($data, {pretty=>0, linum=>0});
+    } else {
+        if (!$json) {
+            require JSON;
+            $json = JSON->new->utf8->allow_nonref;
+        }
+        $json->encode($data);
+    }
 }
 
 1;
@@ -45,16 +52,24 @@ Some example output:
 
 =head1 DESCRIPTION
 
-This module is a shortcut for using L<Data::Format::Pretty::JSON> with options
-C<pretty>=0.
+Like L<Data::Format::Pretty::JSON>, but will always print with JSON option C<<
+pretty => 0 >> (minimal indentation).
 
 
 =head1 FUNCTIONS
 
 =head2 format_pretty($data, \%opts)
 
-Return formatted data structure as JSON. See L<Data::Format::Pretty::JSON> for
-details.
+Return formatted data structure as JSON. Options:
+
+=over 4
+
+=item * color => BOOL
+
+Whether to enable coloring. The default is the enable only when running
+interactively.
+
+=back
 
 
 =head1 SEE ALSO
