@@ -18,7 +18,7 @@ sub format_pretty {
 
     $opts //= {};
 
-    if ($opts->{color} // (-t STDOUT)) {
+    if ($opts->{color} // $ENV{COLOR} // (-t STDOUT)) {
         require JSON::Color;
         JSON::Color::encode_json($data, {pretty=>0, linum=>0});
     } else {
@@ -74,6 +74,13 @@ interactively.
 =head2 content_type() => STR
 
 Return C<application/json>.
+
+
+=head1 ENVIRONMENT
+
+=head2 COLOR => BOOL
+
+Set C<color> option (if unset).
 
 
 =head1 SEE ALSO
