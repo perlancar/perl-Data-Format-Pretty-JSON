@@ -1,6 +1,6 @@
 package Data::Format::Pretty::JSON;
 
-use 5.010;
+use 5.010001;
 use strict;
 use warnings;
 
@@ -101,4 +101,3 @@ Set C<color> option (if unset).
 L<Data::Format::Pretty>
 
 =cut
-
