@@ -1,24 +1,35 @@
 Revision history for Data-Format-Pretty-JSON
 
+0.07     2013-09-29 (SHARYANTO)
+
+         [BUG FIXES]
+
+         - color and pretty settings were not independent. It is now possible to
+           output colored but not pretty (compact), or uncolored but pretty
+           output.
+
+         - linum setting is also now independent.
+
+
 0.06     2012-11-18 (SHARYANTO)
 
-         Observe environment COLOR.
+         - Observe environment COLOR.
 
 
 0.05     2012-11-16 (SHARYANTO)
 
-         Yay, now use JSON::Color when interactive.
+         - Yay, now use JSON::Color when interactive.
 
 
 0.04     2012-08-07 (SHARYANTO)
 
-         No functional changes. Remove circular dependency on
-         Data::Format::Pretty [RT#78781]. Thanks, MITHALDU.
+         - No functional changes. Remove circular dependency on
+           Data::Format::Pretty [RT#78781]. Thanks, MITHALDU.
 
 
 0.03     2012-03-29 (SHARYANTO)
 
-         Add content_type().
+         - Add content_type().
 
 
 0.02     2011-08-11 (SHARYANTO)
