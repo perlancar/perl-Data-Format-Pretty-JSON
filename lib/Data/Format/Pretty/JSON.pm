@@ -17,8 +17,9 @@ sub format_pretty {
     $opts //= {};
 
     state $json;
+    my $pretty = $opts->{pretty} // 1;
 
-    if ($opts->{color} // $ENV{COLOR} // (-t STDOUT)) {
+    if ($pretty && ($opts->{color} // $ENV{COLOR} // (-t STDOUT))) {
         require JSON::Color;
         JSON::Color::encode_json($data, {pretty=>1, linum=>1}) . "\n";
     } else {
@@ -26,7 +27,7 @@ sub format_pretty {
             require JSON;
             $json = JSON->new->utf8->allow_nonref;
         }
-        $json->pretty($opts->{pretty} // 1);
+        $json->pretty($pretty);
         $json->encode($data);
     }
 }

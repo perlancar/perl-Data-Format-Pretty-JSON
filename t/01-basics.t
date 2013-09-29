@@ -8,7 +8,7 @@ test_format_pretty(
     name => 'default',
     data => {a=>1, b=>2},
     opts => {},
-    output_re => qr/"a"\s+:\s+1/,
+    output_re => qr/a.*:.*1/,
 );
 
 test_format_pretty(
