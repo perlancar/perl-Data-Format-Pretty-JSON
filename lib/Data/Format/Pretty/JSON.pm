@@ -18,10 +18,10 @@ sub format_pretty {
 
     state $json;
     my $pretty = $opts->{pretty} // 1;
-
-    if ($pretty && ($opts->{color} // $ENV{COLOR} // (-t STDOUT))) {
+    my $color  = $opts->{color} // $ENV{COLOR} // (-t STDOUT);
+    if ($color) {
         require JSON::Color;
-        JSON::Color::encode_json($data, {pretty=>1, linum=>1}) . "\n";
+        JSON::Color::encode_json($data, {pretty=>$pretty, linum=>$pretty})."\n";
     } else {
         if (!$json) {
             require JSON;
