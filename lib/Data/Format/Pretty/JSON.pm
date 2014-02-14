@@ -17,9 +17,12 @@ sub format_pretty {
     $opts //= {};
 
     state $json;
+    my $interactive = (-t STDOUT);
     my $pretty = $opts->{pretty} // 1;
-    my $linum  = $opts->{linum} // $ENV{LINUM} // $opts->{pretty};
-    my $color  = $opts->{color} // $ENV{COLOR} // (-t STDOUT);
+    my $color  = $opts->{color} // $ENV{COLOR} // $interactive //
+        $opts->{pretty};
+    my $linum  = $opts->{linum} // $ENV{LINUM} // $interactive //
+        $opts->{pretty};
     if ($color) {
         require JSON::Color;
         JSON::Color::encode_json($data, {pretty=>$pretty, linum=>$linum})."\n";
@@ -57,9 +60,11 @@ Some example output:
   3:    "b" : 2,
   4:}
 
-By default color is turned on (unless forced off via C<COLOR> environment) as
-well as pretty printing (unless turned off via pretty=>1) and line numbers
-(unless when pretty=>0 or turned off by linum=>0).
+By default color is turned on when interactive (unless forced off via color=>0
+or environment C<COLOR=0>). By default pretty printing is turned on (unless
+turned off via pretty=>0) and line numbers (unless turned off via when
+pretty=>0). By default line numbers are printed when interactive (unless turned
+off via by linum=>0 or environment C<LINUM=0>).
 
 =item * format_pretty({a=>1, b=>2}, {pretty=>0});
 
@@ -83,18 +88,19 @@ Return formatted data structure as JSON. Options:
 
 =over 4
 
-=item * color => BOOL
+=item * color => BOOL (default: 1 on interactive)
 
 Whether to enable coloring. The default is the enable only when running
-interactively. Currently also enable line numbering.
+interactively.
 
 =item * pretty => BOOL (default: 1)
 
 Whether to pretty-print JSON.
 
-=item * linum => BOOL (default: 1 or 0 if pretty=0)
+=item * linum => BOOL (default: 1 on interactive)
 
-Whether to add line numbers.
+Whether to add line numbers. The default is the enable only when running
+interactively.
 
 =back
 
