@@ -120,6 +120,13 @@ Set C<color> option (if unset).
 Set C<linum> option (if unset).
 
 
+=head1 FAQ
+
+=head2 How do I turn off line numbers?
+
+You can use environment L<LINUM=0> or set option C<< linum => 0 >>.
+
+
 =head1 SEE ALSO
 
 L<Data::Format::Pretty>
