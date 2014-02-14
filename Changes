@@ -1,5 +1,12 @@
 Revision history for Data-Format-Pretty-JSON
 
+0.10    2014-02-14 (SHARYANTO)
+
+	- Revert previous decision. By default turn off line numbers except when
+          LINUM=1 or linum=1, to avoid potential annoyance for users when trying
+          to copy/paste output.
+
+
 0.09    2014-02-14 (SHARYANTO)
 
 	- By default now turn on line numbers when running interactively.
