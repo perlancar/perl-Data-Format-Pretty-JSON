@@ -32,8 +32,8 @@ sub format_pretty {
         }
         $json->pretty($pretty);
         if ($linum) {
-            require SHARYANTO::String::Util;
-            SHARYANTO::String::Util::linenum($json->encode($data));
+            require String::LineNumber;
+            String::LineNumber::linenum($json->encode($data));
         } else {
             $json->encode($data);
         }
