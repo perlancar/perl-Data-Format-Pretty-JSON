@@ -23,8 +23,8 @@ sub format_pretty {
         JSON::Color::encode_json($data, {pretty=>0, linum=>0});
     } else {
         if (!$json) {
-            require JSON;
-            $json = JSON->new->utf8->allow_nonref;
+            require JSON::MaybeXS;
+            $json = JSON::MaybeXS->new->utf8->allow_nonref;
         }
         $json->encode($data);
     }
@@ -88,4 +88,3 @@ Set C<color> option (if unset).
 L<Data::Format::Pretty::JSON>
 
 =cut
-

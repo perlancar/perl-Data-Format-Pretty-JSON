@@ -1,5 +1,8 @@
 package Data::Format::Pretty::JSON;
 
+# DATE
+# VERSION
+
 use 5.010001;
 use strict;
 use warnings;
@@ -7,8 +10,6 @@ use warnings;
 require Exporter;
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(format_pretty);
-
-# VERSION
 
 sub content_type { "application/json" }
 
@@ -27,8 +28,8 @@ sub format_pretty {
         JSON::Color::encode_json($data, {pretty=>$pretty, linum=>$linum})."\n";
     } else {
         if (!$json) {
-            require JSON;
-            $json = JSON->new->utf8->allow_nonref;
+            require JSON::MaybeXS;
+            $json = JSON::MaybeXS->new->utf8->allow_nonref;
         }
         $json->pretty($pretty);
         if ($linum) {
@@ -53,7 +54,7 @@ sub format_pretty {
 
 =head1 DESCRIPTION
 
-This module uses L<JSON> or L<JSON::Color> to encode data as JSON.
+This module uses L<JSON::MaybeXS> or L<JSON::Color> to encode data as JSON.
 
 
 =head1 FUNCTIONS
