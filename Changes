@@ -1,5 +1,3 @@
-Revision history for Data-Format-Pretty-JSON
-
 0.12    2016-03-11 (PERLANCAR)
 
 	- Replace JSON with JSON::MaybeXS.
